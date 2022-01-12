@@ -21,12 +21,16 @@ function menu() {
                 viewDepartment();
             } else if (response.options === 'view all roles') {
                 viewRoles();
-            } else if (response.options === 'view all empoyees') {
+            } else if (response.options === 'view all employees') {
                 viewEmployees();
             } else if (response.options === 'add a department') {
                 addDepartment();
             } else if (response.options === 'add a role') {
                 addRole();
+            } else if (response.options === 'add an employee') {
+                addEmployee();
+            } else {
+                updateEmployee();
             }
         })
 }
@@ -87,4 +91,54 @@ function addRole() {
                 viewRoles();
             })
         })
+}
+
+function addEmployee() {
+    inquirer.prompt([{
+        type: "input",
+        message: "What is the first name?",
+        name: "firstname"
+    },
+    {
+        type: "input",
+        message: "What is the last name?",
+        name: "lastname"
+    },
+    {
+        type: "input",
+        message: "what is the employees corresdoponding role id",
+        name: "roleid"
+    },
+    {
+        type: "input",
+        message: "Please enter the corresponding manager id or none if the employee has no manager",
+        name: "managerid"
+    }
+    ])
+        .then(response => {
+            db.query('INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?,?,?,?)',
+                [response.firstname, response.lastname, response.roleid, response.managerid], (err, data) => {
+                    viewEmployees()
+                })
+        })
+}
+
+function updateEmployee() {
+    inquirer.prompt([{
+        type: "input",
+        message: "Please select the employee corresponding to the desired update",
+        name: "id"
+    },
+    {
+        type: "input",
+        message: "Please select the new role corresponding to the desired update",
+        name: "newrole"
+    }])
+        .then(response => {
+            db.query(`UPDATE employee SET role_id = "?" WHERE id = "${response.id}"`,
+                [response.newrole], (err, data) => {
+                    viewEmployees()
+                })
+        }
+        )
 }

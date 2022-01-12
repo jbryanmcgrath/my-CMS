@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS my_cms;
+CREATE DATABASE my_cms;
+USE my_cms;

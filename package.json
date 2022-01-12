@@ -1,0 +1,26 @@
+{
+  "name": "my-cms",
+  "version": "1.0.0",
+  "description": "db MySQL ",
+  "main": "server.js",
+  "scripts": {
+    "test": "\"npm test\"",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jbryanmcgrath/my-CMS.git"
+  },
+  "author": "Bryan McGrath",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jbryanmcgrath/my-CMS/issues"
+  },
+  "homepage": "https://github.com/jbryanmcgrath/my-CMS#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "express": "^4.17.2",
+    "inquirer": "^8.2.0",
+    "mysql2": "^2.3.3"
+  }
+}

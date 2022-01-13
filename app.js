@@ -135,8 +135,8 @@ function updateEmployee() {
         name: "newrole"
     }])
         .then(response => {
-            db.query(`UPDATE employee SET role_id = "?" WHERE id = "${response.id}"`,
-                [response.newrole], (err, data) => {
+            db.query(`UPDATE employee SET role_id = ? WHERE id = ?`,
+                [response.newrole, response.id], (err, data) => {
                     viewEmployees()
                 })
         }
